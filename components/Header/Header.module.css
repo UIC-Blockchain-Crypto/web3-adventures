@@ -1,0 +1,52 @@
+/* Header.module.css */
+.header {
+    position: relative;
+    z-index: 1100; /* Higher than the navbar */
+    height: 160px; /* Use fixed height value */
+    margin-top: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px; /* Adjust as needed */
+    background-color: var(--mantine-color-body);
+    border-bottom: 1px solid var(--mantine-color-gray-3);
+}
+
+.inner {
+    height: 75px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.leftGroup {
+    display: flex;
+    align-items: center;
+}
+
+.search {
+    margin-left: 10px; /* Adjust the margin as needed */
+}
+
+.linksGroup {
+    flex-grow: 1;
+    right: -20px;
+}
+
+.link {
+    display: block;
+    line-height: 1;
+    padding: 8px 12px;
+    border-radius: var(--mantine-radius-sm);
+    text-decoration: none;
+    color: var(--mantine-color-gray-7);
+    font-size: var(--mantine-font-size-sm);
+    font-weight: 500;
+
+    @mixin hover {
+        background-color: var(--mantine-color-gray-0);
+    }
+
+    [data-active] {
+        background-color: var(--mantine-color-blue-filled);
+        color: var(--mantine-color-white);
+    }
+}

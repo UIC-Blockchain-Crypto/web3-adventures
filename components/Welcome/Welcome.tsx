@@ -1,11 +1,21 @@
-import { Anchor, Text, Title } from '@mantine/core';
+import {Anchor, Button, Text, Title} from '@mantine/core';
 import classes from './Welcome.module.css';
 import useEthereumStore from "@/store/useEthereumStore";
+import EthereumSignInButton from "@/components/Button/EthereumSignInButton";
+import {useRouter} from "next/router";
 
 export function Welcome() {
   const isConnected = useEthereumStore((state) => state.isConnected);
   const account = useEthereumStore((state) => state.account);
   const network = useEthereumStore((state) => state.network);
+
+  const router = useRouter();
+
+  const startChallenges = () => {
+    console.log('Start challenges');
+    router.push('/challenges/1');
+  };
+
   return (
     <>
       <Title className={classes.title} ta="center" mt={100}>
@@ -22,13 +32,16 @@ export function Welcome() {
         </Anchor>
       </Text>
         {isConnected ? (
+            <>
             <Text color="dimmed" ta="center" size="lg" maw={580} mx="auto" mt="xl">
                 Connected to {network} with the address {account}
             </Text>
+            <Button onClick={startChallenges} color="blue" size="lg" fullWidth mt="xl">
+                Get Started
+            </Button>
+            </>
         ) : (
-            <Text color="dimmed" ta="center" size="lg" maw={580} mx="auto" mt="xl">
-                Not connected, press the button on the top right
-            </Text>
+            <EthereumSignInButton />
         )}
     </>
   );

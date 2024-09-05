@@ -4,7 +4,7 @@ import type { AppProps } from 'next/app';
 import Head from 'next/head';
 import {AppShell, Burger, Container, Group, MantineProvider} from '@mantine/core';
 import { theme } from '../theme';
-import classes from "@/components/Header/Header.module.css";
+import classes from '@/components/Header/Header.module.css';
 import EthereumSignInButton from "@/components/Button/EthereumSignInButton";
 import {useDisclosure} from "@mantine/hooks";
 import {useRouter} from "next/router";
@@ -38,7 +38,7 @@ export default function App({ Component, pageProps }: AppProps) {
                                   height={80}
                                   width={80}
                                   onClick={() => router.push('/')}
-                              />
+                              /> Crypto & Blockchain
                           </Group>
                       </Group>
                       <Group align="center" className={classes.rightGroup}>

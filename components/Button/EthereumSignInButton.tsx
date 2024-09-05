@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react';
 import { ethers } from 'ethers';
 import { Button } from '@mantine/core';
-import useEthereumStore from '../../store/useEthereumStore'; // Import the store
+import useEthereumStore from '../../store/useEthereumStore';
+import {getScore, setScore} from "@/lib/scoreTable"; // Import the store
 
 const EthereumSignInButton = () => {
     const [errorMessage, setErrorMessage] = useState('');
@@ -27,8 +28,8 @@ const EthereumSignInButton = () => {
                 method: 'eth_requestAccounts',
             });
 
-            // Set the first account and network in the store
-            setAccount(accounts[0]);
+            const userAddress = accounts[0];
+            setAccount(userAddress);
             setIsConnected(true);
 
             // Get the network
@@ -41,9 +42,30 @@ const EthereumSignInButton = () => {
 
             // Log the signature (or send it to your backend)
             console.log('Signature:', signature);
+
+            if (userAddress) {
+                updateScore(userAddress);
+            }
         } catch (error) {
             setErrorMessage('Failed to connect to wallet.');
             console.error(error);
+        }
+    };
+
+    const updateScore = async (account) => {
+        try {
+            const existingScore = await getScore(account); // Check if the user exists in the score table
+
+            if (existingScore) {
+                // User already exists, no need to give 5 points again
+                console.log(`Returning user: ${account}, current score: ${existingScore.points}`);
+            } else {
+                // New user, add them to the scoreboard with 5 points
+                await setScore(account, { points: 5 });
+                console.log(`New user: ${account}, awarded 5 points.`);
+            }
+        } catch (error) {
+            console.error('Error updating score:', error);
         }
     };
 

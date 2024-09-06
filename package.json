@@ -25,6 +25,7 @@
     "@next/bundle-analyzer": "^14.2.4",
     "@supabase/supabase-js": "^2.45.3",
     "@tabler/icons-react": "^3.6.0",
+    "axios": "^1.7.7",
     "ethers": "^6.13.2",
     "firebase": "^10.13.1",
     "next": "14.2.4",

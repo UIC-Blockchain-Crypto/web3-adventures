@@ -42,12 +42,22 @@ export const getScore = async (address) => {
     }
 };
 
-// Set a new score or update an existing one
-export const setScore = async (address, score) => {
+// Set a new score or update an existing one by adding points
+export const setScore = async (address, points) => {
     try {
         const docRef = doc(db, 'scores', address);
-        await setDoc(docRef, score);
-        return { id: docRef.id, ...score };
+        const docSnap = await getDoc(docRef);
+
+        let newScore;
+        if (docSnap.exists()) {
+            const currentScore = docSnap.data().points || 0;
+            newScore = currentScore + points;
+        } else {
+            newScore = points;
+        }
+
+        await setDoc(docRef, { points: newScore });
+        return { id: docRef.id, points: newScore };
     } catch (e) {
         console.error(e);
         throw e;

@@ -1,11 +1,11 @@
 export const challenges = [
     {
         id: 1,
-        "title": "Send a Transaction",
-        "description": "Send a small transaction to another Ethereum address.",
-        "points": 10,
-        "difficulty": "Easy",
-        "category": "Transactions"
+        title: 'Send a Transaction',
+        description: 'Send a small transaction to another Ethereum address.',
+        points: 10,
+        difficulty: 'Easy',
+        category: 'Transactions',
     },
     {
         "id": 2,

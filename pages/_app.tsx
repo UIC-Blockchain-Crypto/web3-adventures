@@ -2,12 +2,13 @@ import '@mantine/core/styles.css';
 
 import type { AppProps } from 'next/app';
 import Head from 'next/head';
-import {AppShell, Burger, Container, Group, MantineProvider} from '@mantine/core';
+import {Anchor, AppShell, Burger, Container, Group, MantineProvider} from '@mantine/core';
 import { theme } from '../theme';
 import classes from '@/components/Header/Header.module.css';
 import EthereumSignInButton from "@/components/Button/EthereumSignInButton";
 import {useDisclosure} from "@mantine/hooks";
 import {useRouter} from "next/router";
+import {challenges} from "@/lib/challenges";
 
 export default function App({ Component, pageProps }: AppProps) {
     const [opened, { toggle }] = useDisclosure();
@@ -48,7 +49,13 @@ export default function App({ Component, pageProps }: AppProps) {
               </header>
           </AppShell.Header>
 
-          <AppShell.Navbar p="md">Navbar</AppShell.Navbar>
+          <AppShell.Navbar p="md">
+              {challenges.map((challenge) => (
+                  <div key={challenge.id}>
+                      <Anchor href={`/challenges/${challenge.id}`}>{challenge.title}</Anchor>
+                  </div>
+              ))}
+          </AppShell.Navbar>
 
           <AppShell.Main>
             <Component {...pageProps} />

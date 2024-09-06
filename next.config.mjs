@@ -9,5 +9,4 @@ export default withBundleAnalyzer({
   eslint: {
     ignoreDuringBuilds: true,
   },
-  output: 'export',
 });

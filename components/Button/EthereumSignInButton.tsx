@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { ethers } from 'ethers';
 import { Button } from '@mantine/core';
 import useEthereumStore from '../../store/useEthereumStore';
-import { getScore, setScore } from '@/lib/scoreTable'; // Import the store
+import {getScore, setScoreWithVerification} from '@/lib/scoreTable'; // Import the store
 
 const EthereumSignInButton = () => {
     const [errorMessage, setErrorMessage] = useState('');
@@ -61,7 +61,8 @@ const EthereumSignInButton = () => {
                 console.log(`Returning user: ${account}, current score: ${existingScore.points}`);
             } else {
                 // New user, add them to the scoreboard with 5 points
-                await setScore(account, { points: 5 });
+                await setScoreWithVerification(account, 5, '', 0)
+                    .catch(errorMsg => setErrorMessage(errorMsg));
                 console.log(`New user: ${account}, awarded 5 points.`);
             }
         } catch (error) {

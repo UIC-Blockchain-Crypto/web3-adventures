@@ -3,11 +3,16 @@ import { app } from '../config/firebase';
 
 const db = getFirestore(app);
 
+interface Score {
+    id: string;
+    points: number;
+}
+
 // Fetch all scores, sort them by points and assign ranks
-export const getScores = async () => {
+export const getScores = async (): Promise<Score[]> => {
     try {
         const snapshot = await getDocs(collection(db, 'scores'));
-        let scores = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+        let scores: Score[] = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() as Score }));
 
         // Sort scores in descending order based on points
         scores.sort((a, b) => b.points - a.points);

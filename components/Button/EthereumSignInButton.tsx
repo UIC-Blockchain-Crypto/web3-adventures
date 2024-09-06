@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { ethers } from 'ethers';
 import { Button } from '@mantine/core';
 import useEthereumStore from '../../store/useEthereumStore';
-import {getScore, setScore} from "@/lib/scoreTable"; // Import the store
+import { getScore, setScore } from '@/lib/scoreTable'; // Import the store
 
 const EthereumSignInButton = () => {
     const [errorMessage, setErrorMessage] = useState('');

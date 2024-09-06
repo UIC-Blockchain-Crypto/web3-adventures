@@ -3,9 +3,9 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { IconCheck, IconX } from '@tabler/icons-react';
 import useEthereumStore from '@/store/useEthereumStore';
-import {useRouter} from "next/router";
-import {setScore} from "@/lib/scoreTable";
-import EthereumSignInButton from "@/components/Button/EthereumSignInButton";
+import { useRouter } from 'next/router';
+import { setScoreWithVerification } from '@/lib/scoreTable';
+import EthereumSignInButton from '@/components/Button/EthereumSignInButton';
 
 export const ChallengeCard = ({ challenge }) => {
     const [transactionId, setTransactionId] = useState("");
@@ -39,7 +39,7 @@ export const ChallengeCard = ({ challenge }) => {
                 setIsChallengeVerified(true);
                 setIsVerificationFailed(false);
                 setVerificationMessage('Challenge Verified!');
-                await setScore(userAddress, challenge.points);
+                await setScoreWithVerification(userAddress, challenge.points, transactionId, challenge.id);
             } else {
                 setIsChallengeVerified(false);
                 setIsVerificationFailed(true);
@@ -59,16 +59,31 @@ export const ChallengeCard = ({ challenge }) => {
         }
     }, [transactionId]);
 
+    const renderDescriptionWithLinks = (description) => {
+        const markdownLinkRegex = /\[([^\]]+)\]\((https?:\/\/[^\s]+)\)/g;
+        const parts = [];
+        let lastIndex = 0;
+
+        description.replace(markdownLinkRegex, (match, text, url, offset) => {
+            parts.push(description.slice(lastIndex, offset));
+            parts.push(<a key={offset} href={url} target="_blank" rel="noopener noreferrer">{text}</a>);
+            lastIndex = offset + match.length;
+        });
+
+        parts.push(description.slice(lastIndex));
+        return parts;
+    };
+
     return (
         <div className="card">
             <h1>{challenge.title}</h1>
-            <p>{challenge.description}</p>
-            <p>Points: {challenge.points}</p>
-            <p>Difficulty: {challenge.difficulty}</p>
-            <p>Category: {challenge.category}</p>
+            <p>{renderDescriptionWithLinks(challenge.description)}</p>
+            <p><b>Points:</b> {challenge.points}</p>
+            <p><b>Difficulty:</b> {challenge.difficulty}</p>
+            <p><b>Category:</b> {challenge.category}</p>
             {userAddress ? (
                 <>
-                    <Text>
+                    <Text mb="sm">
                         {`Enter your Transaction ID, we'll verify it belongs to address ${userAddress}`}
                     </Text>
                     <Input

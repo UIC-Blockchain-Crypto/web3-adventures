@@ -97,10 +97,41 @@ export const challenges = [
     },
     {
         id: 13,
-        title: 'Bridge ETH for Base',
-        description: 'Bridge 0.005 ETH Sepolia ETH for Sepolia Base on [Superbridge](https://testnets.superbridge.app/base-sepolia). The whole process should have 2 steps and the final step is that you will receive ETH on the Sepolia Base Network',
+        title: 'Create a Token',
+        description: 'Use [Bitbond](https://tokentool.bitbond.com/create-token/security-token/ethereum-sepolia) to create a DeFi or Security token, the choice is yours. Choose whichever configurations make sense for your token.',
         difficulty: 'Hard',
         points: 30,
-        category: 'Bridging',
+        category: 'Tokeneconomics',
     },
+    {
+       id: 14,
+       title: 'Import your Token to your Wallet',
+       description: 'Import the Token to your Wallet using the contract address of the token you just created.',
+       difficulty: 'Medium',
+       points: 25,
+       category: 'Wallet',
+    },
+    {
+        id: 15,
+        title: 'Mint more of your Tokens',
+        description: '[Mint](https://tokentool.bitbond.com/managetoken/) more of your tokens and send them to a classmate\'s Ethereum wallet address.',
+        difficulty: 'Easy',
+        points: 15,
+        category: 'Tokeneconomics',
+    },
+    {
+        id: 16,
+        title: 'Burn some of your Tokens',
+        description: '[Burn](https://tokentool.bitbond.com/managetoken/) some of your tokens.',
+        difficulty: 'Easy',
+        points: 15,
+        category: 'Tokeneconomics',
+    },
+    {
+        id: 17,
+        title: 'Create a Payment Stream',
+        description: 'Use [Sablier](https://sablier.finance/) to create a payment stream. You can choose the amount and duration of the stream.',
+    }https://tokentool.bitbond.com/create-payment-stream-collection/ethereum-sepolia
+
+
 ];

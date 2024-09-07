@@ -2,7 +2,7 @@ export const challenges = [
     {
         id: 1,
         title: 'Fund your wallet with ETH Testnet from the Sepolia Network',
-        description: 'Go to a faucet and get some testnet ETH Sepolia. A few popular faucets are: [Google Cloud Faucet](https://cloud.google.com/application/web3/faucet/ethereum/sepolia), [Alchemy Faucet](https://www.alchemy.com/faucets/ethereum-sepolia)',
+        description: 'Go to a faucet and get some testnet ETH Sepolia. A few popular faucets are: [Google Cloud Faucet](https://cloud.google.com/application/web3/faucet/ethereum/sepolia), [Alchemy Faucet](https://www.alchemy.com/faucets/ethereum-sepolia), [Bitbond](https://tokentool.bitbond.com/faucet/ethereum-sepolia)',
         points: 10,
         difficulty: 'Easy',
         category: 'Transactions',
@@ -18,7 +18,7 @@ export const challenges = [
     {
         id: 3,
         title: 'Send a Transaction',
-        description: 'Send 0.0001 ETH Sepolia to our class Ethereum wallet address (0x6836684527E29572A855fEf7348637bE8d972BB7).',
+        description: 'Send 0.0001 ETH Sepolia to our class Ethereum wallet address (0x6836684527E29572A855fEf7348637bE8d972BB7). Refer to the documentation at our [blog](https://paragraph.xyz/@uic-blockchain-crypto/create-and-verify-a-transaction-ethereum) for details',
         points: 10,
         difficulty: 'Easy',
         category: 'Transactions',
@@ -129,9 +129,33 @@ export const challenges = [
     },
     {
         id: 17,
+        title: 'Lock & Unlock your Tokens',
+        description: '[Lock](https://tokentool.bitbond.com/create-token-locker/ethereum-sepolia) some of your tokens for a few minutes, roughly 3 to 5 minutes. Take note of the contract address your locked tokens are deposited to, you\'ll need this address to withdraw your tokens, if you forget the address you can always look it up on Etherscan. Go back to the same place you locked your token and enter the contract address to withdraw your tokens, if you\'re doing it before the token lock time you won\'t be able to withdraw the funds. Re-do this step after the time lock ends and withdraw your funds.',
+        difficulty: 'Hard',
+        points: 30,
+        category: 'Tokeneconomics',
+    },
+    {
+        id: 18,
+        title: 'Attach a On-Chain Message to Transaction',
+        description: '[Send on-chain message](https://tokentool.bitbond.com/create-chain-record/ethereum-sepolia) a classmate an on-chain message like \'hello there\', please make appropriate this will forever be on the internet. Go to the transaction on an Ethereum explorer and view the input data as UTC-8 encoded.',
+        difficulty: 'Easy',
+        points: 15,
+        category: 'Transactions',
+    },
+    {
+        id: 19,
         title: 'Create a Payment Stream',
-        description: 'Use [Sablier](https://sablier.finance/) to create a payment stream. You can choose the amount and duration of the stream.',
-    }https://tokentool.bitbond.com/create-payment-stream-collection/ethereum-sepolia
-
-
+        description: 'Use [Sablier](https://sablier.finance/) to create a payment stream, be sure you select Sepolia. Choose the exponential lock-up stream, put in your token using your token contract ID, make the duration for 1 hour.',
+        difficulty: 'Medium',
+        points: 25,
+        category: 'Payments',
+    },
+    {
+        id: 20,
+        title: 'Get a ENS for your Wallet',
+        description: 'Get an ENS for your wallet address, you can use [ENS](https://app.ens.domains/). Be sure that your wallet is on the Sepolia Network. Follow all the instructions presented to you on the ENS website. You won\'t be able to search your ENS on Etherscan or see it in you wallet, but you can verify the ownership on Etherscan and see the contract address.',
+        difficulty: 20,
+        category: 'Wallets',
+    },
 ];

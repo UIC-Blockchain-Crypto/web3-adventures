@@ -1,11 +1,11 @@
 import { Button, Group, Input, Text } from '@mantine/core';
 import { useEffect, useState } from 'react';
-import axios from 'axios';
 import { IconCheck, IconX } from '@tabler/icons-react';
-import useEthereumStore from '@/store/useEthereumStore';
 import { useRouter } from 'next/router';
+import useEthereumStore from '@/store/useEthereumStore';
 import { setScoreWithVerification } from '@/lib/scoreTable';
 import EthereumSignInButton from '@/components/Button/EthereumSignInButton';
+import {verifyTxnId} from '@/lib/verifyTxnId';
 
 export const ChallengeCard = ({ challenge }) => {
     const [transactionId, setTransactionId] = useState("");
@@ -28,14 +28,10 @@ export const ChallengeCard = ({ challenge }) => {
         if (!transactionId) return;
 
         try {
-            const response = await axios.post('/api/verifyTxn', {
-                transactionId,
-                userAddress,
-            });
+            const verification = await verifyTxnId(userAddress, transactionId, challenge.networkName, challenge.id, challenge.category);
 
-            console.log('Verification response:', response.data);
-
-            if (response.data.verified) {
+            console.log('Verification:', verification);
+            if (verification.verified) {
                 setIsChallengeVerified(true);
                 setIsVerificationFailed(false);
                 setVerificationMessage('Challenge Verified!');
@@ -81,6 +77,8 @@ export const ChallengeCard = ({ challenge }) => {
             <p><b>Points:</b> {challenge.points}</p>
             <p><b>Difficulty:</b> {challenge.difficulty}</p>
             <p><b>Category:</b> {challenge.category}</p>
+            <p><b>Network:</b> {challenge.networkName}</p>
+
             {userAddress ? (
                 <>
                     <Text mb="sm">
@@ -96,13 +94,13 @@ export const ChallengeCard = ({ challenge }) => {
             ) : (
                 <>
                     <Text>You need to connect your wallet to verify this challenge.</Text>
-                    <EthereumSignInButton />
+                    <EthereumSignInButton/>
                 </>
             )}
 
             <Group>
-                {isChallengeVerified && <IconCheck size={24} color="green" />}
-                {isVerificationFailed && <IconX size={24} color="red" />}
+                {isChallengeVerified && <IconCheck size={24} color="green"/>}
+                {isVerificationFailed && <IconX size={24} color="red"/>}
                 {verificationMessage && <p>{verificationMessage}</p>}
             </Group>
             {isChallengeVerified && (

@@ -5,20 +5,21 @@ import { getScores } from '../../lib/scoreTable'; // Import the Firebase functio
 const ScoresTable = () => {
     const [scores, setScores] = useState([]);
 
-    // Fetch all scores on component mount
+    // Fetch scores in real-time when the component mounts
     useEffect(() => {
-        const fetchScores = async () => {
-            const data = await getScores();
-            setScores(data);
-        };
+        // Call the getScores function and pass the setScores function
+        const unsubscribe = getScores(setScores);
 
-        fetchScores();
+        // Cleanup the subscription when the component unmounts
+        return () => {
+            unsubscribe(); // Unsubscribe from Firestore listener
+        };
     }, []);
 
     return (
         <div>
             <h2>User Scores</h2>
-            {scores ? (
+            {scores.length > 0 ? (
                 <Table
                     horizontalSpacing="md"
                     verticalSpacing="sm"

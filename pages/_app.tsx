@@ -2,7 +2,7 @@ import '@mantine/core/styles.css';
 
 import type { AppProps } from 'next/app';
 import Head from 'next/head';
-import {Anchor, AppShell, Burger, Checkbox, Container, Group, MantineProvider} from '@mantine/core';
+import {Anchor, AppShell, Burger, Checkbox, Container, Group, MantineProvider, ScrollArea} from '@mantine/core';
 import { theme } from '../theme';
 import classes from '@/components/Header/Header.module.css';
 import EthereumSignInButton from "@/components/Button/EthereumSignInButton";
@@ -50,11 +50,13 @@ export default function App({ Component, pageProps }: AppProps) {
           </AppShell.Header>
 
           <AppShell.Navbar p="md">
+              <ScrollArea>
               {challenges.map((challenge) => (
                   <Group key={challenge.id} mb="sm">
                       <Checkbox label={<Anchor href={`/challenges/${challenge.id}`}>{challenge.title}</Anchor>}/>
                   </Group>
               ))}
+              </ScrollArea>
           </AppShell.Navbar>
 
           <AppShell.Main>

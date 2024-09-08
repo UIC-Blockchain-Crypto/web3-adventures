@@ -9,26 +9,36 @@ interface Score {
 }
 
 // Fetch all scores, sort them by points and assign ranks
-export const getScores = async (): Promise<Score[]> => {
+export const getScores = (setScores: React.Dispatch<React.SetStateAction<Score[]>>): (() => void) => {
     try {
-        const snapshot = await getDocs(collection(db, 'scores'));
-        let scores: Score[] = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() as Score }));
+        // Use onSnapshot for real-time updates
+        const unsubscribe = onSnapshot(collection(db, 'scores'), (snapshot) => {
+            let scores: Score[] = snapshot.docs.map(doc => ({
+                id: doc.id,
+                ...doc.data() as Score,
+            }));
 
-        // Sort scores in descending order based on points
-        scores.sort((a, b) => b.points - a.points);
+            // Sort scores in descending order based on points
+            scores.sort((a, b) => b.points - a.points);
 
-        // Assign a rank to each user based on the sorted order
-        scores = scores.map((score, index) => ({
-            ...score,
-            rank: index + 1,
-        }));
+            // Assign a rank to each user based on the sorted order
+            scores = scores.map((score, index) => ({
+                ...score,
+                rank: index + 1,
+            }));
 
-        return scores;
+            // Update the state in real-time
+            setScores(scores);
+        });
+
+        // Return the unsubscribe function to stop listening when the component unmounts
+        return unsubscribe;
     } catch (e) {
         console.error(e);
-        return [];
+        return () => {}; // Return an empty function if an error occurs
     }
 };
+
 
 // Check if user already has a score entry by address
 export const getScore = async (address) => {
@@ -115,12 +125,6 @@ export const storeVerification = async (address: string, challengeNumber: number
 // Set a new score or update an existing one by adding points, with transaction verification
 export const setScoreWithVerification = async (address: string, points: number, transactionId: string, challengeNumber: number) => {
     try {
-        // Check if the transaction ID has already been used
-        const isTransactionUsed = await checkIfTransactionUsed(transactionId);
-        if (isTransactionUsed) {
-            throw new Error('Transaction ID has already been used.');
-        }
-
         // Proceed to check and update the user's score
         const docRef = doc(db, 'scores', address);
         const docSnap = await getDoc(docRef);
@@ -145,4 +149,3 @@ export const setScoreWithVerification = async (address: string, points: number, 
         throw e;
     }
 };
-

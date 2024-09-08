@@ -24,9 +24,9 @@ export default function App({ Component, pageProps }: AppProps) {
         <link rel="shortcut icon" href="/favicon.svg" />
       </Head>
       <AppShell
-          header={{ height: 80 }}
-          navbar={{ width: 300, breakpoint: 'sm', collapsed: { mobile: !opened } }}
-          padding="md"
+        header={{ height: 80 }}
+        navbar={{ width: 300, breakpoint: 'sm', collapsed: { mobile: !opened } }}
+        padding="md"
       >
           <AppShell.Header>
               <header>
@@ -35,10 +35,10 @@ export default function App({ Component, pageProps }: AppProps) {
                           <Burger opened={opened} onClick={toggle} hiddenFrom="sm" size="sm" />
                           <Group align="center" className={classes.leftGroup}>
                               <img
-                                  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQW5q20Z2FoXbhUyY0RkXDwyYdJRbVxKME7Hg&s"
-                                  height={80}
-                                  width={80}
-                                  onClick={() => router.push('/')}
+                                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQW5q20Z2FoXbhUyY0RkXDwyYdJRbVxKME7Hg&s"
+                                height={80}
+                                width={80}
+                                onClick={() => router.push('/')}
                               /> Crypto & Blockchain
                           </Group>
                       </Group>

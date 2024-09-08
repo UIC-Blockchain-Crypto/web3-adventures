@@ -5,7 +5,7 @@ import { useRouter } from 'next/router';
 import useEthereumStore from '@/store/useEthereumStore';
 import { setScoreWithVerification } from '@/lib/scoreTable';
 import EthereumSignInButton from '@/components/Button/EthereumSignInButton';
-import {verifyTxnId} from '@/lib/verifyTxnId';
+import { verifyTxnId } from '@/lib/verifyTxnId';
 
 export const ChallengeCard = ({ challenge }) => {
     const [transactionId, setTransactionId] = useState("");
@@ -55,6 +55,17 @@ export const ChallengeCard = ({ challenge }) => {
         }
     }, [transactionId]);
 
+    // Automatically mark challenge as verified and award points if no transaction ID is needed
+    useEffect(() => {
+        if (!challenge.transactionIdNeeded && userAddress) {
+            setIsChallengeVerified(true);
+            setVerificationMessage('Challenge Completed!');
+            setScoreWithVerification(userAddress, challenge.points, null, challenge.id);
+        } else if (transactionId) {
+            challengeVerified(transactionId);
+        }
+    }, [transactionId, userAddress]);
+
     const renderDescriptionWithLinks = (description) => {
         const markdownLinkRegex = /\[([^\]]+)\]\((https?:\/\/[^\s]+)\)/g;
         const parts = [];
@@ -81,31 +92,40 @@ export const ChallengeCard = ({ challenge }) => {
 
             {userAddress ? (
                 <>
-                    <Text mb="sm">
-                        {`Enter your Transaction ID, we'll verify it belongs to address ${userAddress}`}
-                    </Text>
-                    <Input
-                        placeholder="Enter Transaction ID"
-                        mb="md"
-                        value={transactionId}
-                        onChange={(e) => setTransactionId(e.target.value)}
-                    />
+                    {challenge.transactionIdNeeded ? (
+                        <>
+                            <Text mb="sm">
+                                {`Enter your Transaction ID, we'll verify it belongs to address ${userAddress}`}
+                            </Text>
+                            <Input
+                                placeholder="Enter Transaction ID"
+                                mb="md"
+                                value={transactionId}
+                                onChange={(e) => setTransactionId(e.target.value)}
+                            />
+                        </>
+                    ) : (
+                        <Text mb="sm">
+                            No transaction ID is needed for this challenge. You can move to the next challenge by clicking "Next".
+                        </Text>
+                    )}
                 </>
             ) : (
                 <>
                     <Text>You need to connect your wallet to verify this challenge.</Text>
-                    <EthereumSignInButton/>
+                    <EthereumSignInButton />
                 </>
             )}
 
             <Group>
-                {isChallengeVerified && <IconCheck size={24} color="green"/>}
-                {isVerificationFailed && <IconX size={24} color="red"/>}
+                {isChallengeVerified && <IconCheck size={24} color="green" />}
+                {isVerificationFailed && <IconX size={24} color="red" />}
                 {verificationMessage && <p>{verificationMessage}</p>}
             </Group>
-            {isChallengeVerified && (
+
+            {isChallengeVerified || !challenge.transactionIdNeeded ? (
                 <Button onClick={nextChallenge}>Next</Button>
-            )}
+            ) : null}
         </div>
     );
 };

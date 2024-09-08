@@ -7,6 +7,7 @@ export const challenges = [
         difficulty: 'Easy',
         category: 'Transactions',
         networkName: 'Sepolia',
+        transactionIdNeeded: true,
     },
     {
         id: 2,
@@ -16,6 +17,7 @@ export const challenges = [
         difficulty: 'Easy',
         category: 'Transactions',
         networkName: 'Holesky',
+        transactionIdNeeded: true,
     },
     {
         id: 3,
@@ -25,6 +27,7 @@ export const challenges = [
         difficulty: 'Easy',
         category: 'Transactions',
         networkName: 'Sepolia',
+        transactionIdNeeded: true,
     },
     {
         id: 4,
@@ -34,6 +37,7 @@ export const challenges = [
         difficulty: 'Medium',
         category: 'Lending',
         networkName: 'Sepolia',
+        transactionIdNeeded: true,
     },
     {
         id: 5,
@@ -43,6 +47,7 @@ export const challenges = [
         difficulty: 'Medium',
         category: 'Lending',
         networkName: 'Sepolia',
+        transactionIdNeeded: true,
     },
     {
         id: 6,
@@ -52,6 +57,7 @@ export const challenges = [
         difficulty: 'Easy',
         category: 'Transactions',
         networkName: 'Sepolia',
+        transactionIdNeeded: true,
     },
     {
         id: 7,
@@ -61,6 +67,7 @@ export const challenges = [
         difficulty: 'Medium',
         category: 'Wallet',
         networkName: 'Holesky',
+        transactionIdNeeded: false,
     },
     {
         id: 8,
@@ -70,6 +77,7 @@ export const challenges = [
         difficulty: 'Hard',
         category: 'Staking',
         networkName: 'Holesky',
+        transactionIdNeeded: true,
     },
     {
         id: 9,
@@ -79,6 +87,7 @@ export const challenges = [
         difficulty: 'Medium',
         category: 'Wallet',
         networkName: 'Holesky',
+        transactionIdNeeded: false,
     },
     {
         id: 10,
@@ -88,6 +97,7 @@ export const challenges = [
         difficulty: 'Easy',
         category: 'Staking',
         networkName: 'Holesky',
+        transactionIdNeeded: true,
     },
     {
         id: 11,
@@ -97,6 +107,7 @@ export const challenges = [
         difficulty: 'Medium',
         category: 'Wallet',
         networkName: 'Sepolia Base',
+        transactionIdNeeded: false,
     },
     {
         id: 12,
@@ -106,6 +117,7 @@ export const challenges = [
         points: 30,
         category: 'Bridging',
         networkName: 'Sepolia Base',
+        transactionIdNeeded: true,
     },
     {
         id: 13,
@@ -115,6 +127,7 @@ export const challenges = [
         points: 30,
         category: 'Tokeneconomics',
         networkName: 'Sepolia',
+        transactionIdNeeded: true,
     },
     {
         id: 14,
@@ -124,6 +137,7 @@ export const challenges = [
         points: 25,
         category: 'Wallet',
         networkName: 'Sepolia',
+        transactionIdNeeded: false,
     },
     {
         id: 15,
@@ -133,6 +147,7 @@ export const challenges = [
         points: 15,
         category: 'Tokeneconomics',
         networkName: 'Sepolia',
+        transactionIdNeeded: true,
     },
     {
         id: 16,
@@ -142,6 +157,7 @@ export const challenges = [
         points: 15,
         category: 'Tokeneconomics',
         networkName: 'Sepolia',
+        transactionIdNeeded: true,
     },
     {
         id: 17,
@@ -151,6 +167,7 @@ export const challenges = [
         points: 30,
         category: 'Tokeneconomics',
         networkName: 'Sepolia',
+        transactionIdNeeded: true,
     },
     {
         id: 18,
@@ -160,6 +177,7 @@ export const challenges = [
         points: 15,
         category: 'Transactions',
         networkName: 'Sepolia',
+        transactionIdNeeded: true,
     },
     {
         id: 19,
@@ -169,6 +187,7 @@ export const challenges = [
         points: 25,
         category: 'Payments',
         networkName: 'Sepolia',
+        transactionIdNeeded: true,
     },
     {
         id: 20,
@@ -178,5 +197,6 @@ export const challenges = [
         points: 20,
         category: 'Wallet',
         networkName: 'Sepolia',
+        transactionIdNeeded: false,
     },
 ];

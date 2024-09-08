@@ -1,4 +1,12 @@
-# Mantine Next.js template
+# Web3 Wallet Adventures
+
+## Contributing
+If you have any suggestions please add them to the issues section of this project. If you have any improvements or enchancements please add them to the project.
+
+When you are putting changes to the project, create a PR, and after an approval they will commited into the project. 
+
+
+# CHANGE THIS - THIS IS JUST A TEMPLATE README
 
 This is a template for [Next.js](https://nextjs.org/) pages router + [Mantine](https://mantine.dev/).
 If you want to use app router instead, see [next-app-template](https://github.com/mantinedev/next-app-template).

@@ -7,7 +7,7 @@ export const challenges = [
         difficulty: 'Easy',
         category: 'Transactions',
         networkName: 'Sepolia',
-        transactionIdNeeded: true,
+        transactionIdNeeded: false,
     },
     {
         id: 2,
@@ -17,7 +17,7 @@ export const challenges = [
         difficulty: 'Easy',
         category: 'Transactions',
         networkName: 'Holesky',
-        transactionIdNeeded: true,
+        transactionIdNeeded: false,
     },
     {
         id: 3,

@@ -2,7 +2,7 @@ import axios from 'axios';
 
 export default async function handler(req, res) {
 
-    console.log('Verifying transaction:', req.body);
+    console.log('Verifying transaction IN API:', req.body);
     if (req.method !== 'POST') {
         return res.status(405).json({ error: 'Method not allowed' });
     }
@@ -25,6 +25,7 @@ export default async function handler(req, res) {
     }
 
     console.log('Infura URL:', infuraUrl);
+    console.log('Transaction ID:', transactionId);
 
     try {
         const response = await axios.post(infuraUrl, {
